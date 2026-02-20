@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Test - Admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+  
+    <link href="img/favicon.ico" rel="icon">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ 
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+   
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+</head>
+<style>
+    .header {
+        display: flex;
+        width: 100%;
+       justify-content: space-between;
+    }
+</style>
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+     
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Test</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Name</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                  
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">Name</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid mt-5">
+                <div class="row align-items-start w-100">
+  <div class="col-10">
+    <form class="row g-2">
+      <div class="col-6 ms-4">
+        <label class="visually-hidden" for="inlineFormInputGroupUsername">Barcode Here</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="searchid" placeholder="Barcode Here">
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <button type="button" id="submit" onclick="submitSearch(event)" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-2 text-end">
+
+    <button type="button" class="btn btn-primary" onclick="pickExcelOnce()">+</button>
+  </div>
+</div>
+
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h6 class="mb-4">Bordered Table</h6>
+                        <table id="specimenlist" class="table table-bordered" style="font-family: kanit;">
+                            <colgroup>
+                                <col style="width: 5%;">
+                                <col style="width: 5%;">
+                                <col style="width: 28%;">
+                                <col style="width: 62%;">
+                            </colgroup>
+                            <thead class="text-center" style="background-color:lightblue;">
+                                <tr>
+                                    <th scope="col" >#</th>
+                                    <th scope="col" >ลำดับ</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">ชื่อ นามสกุล</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="text-center" >1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">2</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+<div class="modal" id="showmodal" style="display: none;">
+  <div class="modal-dialog" style="background-color: lightsteelblue;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chest X-Ray</h5>
+       
+      </div>
+      <div class="modal-body">
+         <div class="row g-3"> 
+            <div class="col-sm-4">
+                 <span type="text" class="form-control" id="showid"></span>
+            </div>
+        <div class="col-sm-8">
+                 <span type="text" class="form-control" id="showname"></span> 
+            </div>
+         </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closemodal()">Close</button>
+        <button id="addspecimen" type="button" onclick=" addSpecimen(event)" class="btn btn-primary">Input</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ====== Globals ======
+  let fileHandle = null;     // handle ของไฟล์ที่เลือก
+  let workbook = null;       // workbook ทั้งไฟล์
+  let cachedData = [];       // จาก sheet "Data": [{id, idNorm, name}]
+
+  // ====== Helpers ======
+  function normalizeId(v) {
+    return String(v ?? "")
+      .trim()
+      .replace(/\s+/g, "")
+      .replace(/-/g, "")
+      .toUpperCase();
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
+  }
+
+  // ====== 1) Pick Excel once (Chrome/Edge) ======
+  async function pickExcelOnce() {
+    if (!window.showOpenFilePicker) {
+      alert("ต้องใช้ Chrome/Edge และเปิดผ่าน https หรือ localhost");
+      return;
+    }
+
+    [fileHandle] = await window.showOpenFilePicker({
+      multiple: false,
+      types: [{
+        description: "Excel",
+        accept: {
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+          "application/vnd.ms-excel": [".xls"]
+        }
+      }]
+    });
+
+    const file = await fileHandle.getFile();
+    const buffer = await file.arrayBuffer();
+    workbook = XLSX.read(buffer, { type: "array" });
+
+    console.log("SheetNames:", workbook.SheetNames);
+
+    // โหลด sheet Data -> cachedData
+    loadDataSheet();
+
+    // แสดงตาราง Specimen ทันที
+    showSpecimen();
+
+    alert(`เลือกไฟล์แล้ว ✅ Data โหลดได้ ${cachedData.length} แถว`);
+  }
+
+  // ====== 2) Load sheet "Data" into cachedData ======
+  function loadDataSheet() {
+    if (!workbook) return;
+
+    const dataName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "data");
+    if (!dataName) {
+      cachedData = [];
+      alert('ไม่พบชีตชื่อ "Data" (ดูชื่อชีตใน console: SheetNames)');
+      return;
+    }
+
+    const wsData = workbook.Sheets[dataName];
+    const aoa = XLSX.utils.sheet_to_json(wsData, { header: 1, defval: "" });
+
+    console.log("Data first rows:", aoa.slice(0, 5));
+
+    // ถ้าแถวแรกเป็นหัวตาราง ให้ข้าม
+    const body = aoa.slice(1);
+
+    cachedData = body
+      .filter(r => normalizeId(r?.[0]) !== "")   // Column A ต้องมีค่า
+      .map(r => {
+        const idRaw = r?.[0];                    // A
+        const c = String(r?.[2] ?? "").trim();   // C
+        const d = String(r?.[3] ?? "").trim();   // D
+        const e = String(r?.[4] ?? "").trim();   // E
+        const name = [c, d, e].filter(Boolean).join(" ");
+
+        return {
+          id: String(idRaw ?? "").trim(),
+          idNorm: normalizeId(idRaw),
+          name
+        };
+      });
+
+    console.log("cachedData sample:", cachedData.slice(0, 10));
+  }
+
+  // ====== 3) Search by ID from cachedData ======
+  function submitSearch(event) {
+    if (event) event.preventDefault();
+
+    const key = normalizeId(document.getElementById("searchid")?.value);
+    const showId = document.getElementById("showid");
+    const showName = document.getElementById("showname");
+
+    if (showId) showId.textContent = "";
+    if (showName) showName.textContent = "";
+
+    if (!cachedData.length) {
+      alert("ยังไม่ได้โหลดข้อมูลจากชีต Data (กดเลือกไฟล์ก่อน)");
+      return;
+    }
+
+    if (!key) {
+      alert("กรุณากรอก ID");
+      return;
+    }
+
+    const found = cachedData.find(x => x.idNorm === key);
+
+    if (found) {
+      if (showId) showId.textContent = found.id;
+      if (showName) showName.textContent = found.name;
+      openmodal();
+    } else {
+      alert("ไม่พบ ID นี้");
+    }
+  }
+
+  // ====== 4) Add to sheet "Specimen": C=id, D=name, E='X Ray' ======
+  async function addSpecimen(event) {
+    if (event) event.preventDefault();
+
+    if (!fileHandle || !workbook) {
+      alert("ยังไม่ได้เลือกไฟล์ Excel (กดปุ่มเลือกไฟล์ก่อน)");
+      return;
+    }
+
+    const id = (document.getElementById("showid")?.textContent || "").trim();
+    const name = (document.getElementById("showname")?.textContent || "").trim();
+
+    if (!id || !name) {
+      alert("ยังไม่มี ID/Name ให้บันทึก (ต้องค้นหาให้พบก่อน)");
+      return;
+    }
+
+    const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
+    if (!specName) {
+      alert('ไม่พบชีตชื่อ "Specimen"');
+      return;
+    }
+
+    const ws = workbook.Sheets[specName];
+    const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+
+    // หาแถวสุดท้ายที่มีข้อมูลจริง
+    let last = aoa.length - 1;
+    while (last >= 0 && (aoa[last] || []).every(v => String(v).trim() === "")) last--;
+    const nextRow = last + 1;
+
+    // A=0,B=1,C=2,D=3,E=4
+    const row = aoa[nextRow] ? [...aoa[nextRow]] : [];
+    row[2] = id;       // Column C
+    row[3] = name;     // Column D
+    row[4] = "X Ray";  // Column E
+    aoa[nextRow] = row;
+
+    workbook.Sheets[specName] = XLSX.utils.aoa_to_sheet(aoa);
+
+    // ขอสิทธิ์เขียน แล้วเขียนทับไฟล์เดิม
+    const perm = await fileHandle.requestPermission({ mode: "readwrite" });
+    if (perm !== "granted") {
+      alert("ไม่ได้รับอนุญาตให้เขียนไฟล์");
+      return;
+    }
+
+    const writable = await fileHandle.createWritable();
+    const out = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    await writable.write(out);
+    await writable.close();
+
+    // refresh ตาราง specimen ทุกครั้ง
+    showSpecimen();
+    closemodal();
+
+    alert("บันทึกสำเร็จ✅");
+  }
+
+  // ====== 5) Show sheet "Specimen" on table #specimenlist ======
+  function showSpecimen() {
+  if (!workbook) return;
+
+  const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
+  if (!specName) return;
+
+  const ws = workbook.Sheets[specName];
+  const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+
+  const tbody = document.querySelector("#specimenlist tbody");
+  if (!tbody) return;
+
+  tbody.innerHTML = "";
+
+  const start = 0; // ถ้าแถวแรกใน Specimen เป็นหัวตาราง ให้เปลี่ยนเป็น 1
+
+  let no = 1;
+  for (let i = start; i < aoa.length; i++) {
+    const r = aoa[i] || [];
+
+    const colC = String(r[2] ?? "").trim(); // Specimen Col C
+    const colD = String(r[3] ?? "").trim(); // Specimen Col D
+
+    if (!colC && !colD) continue;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <th scope="row" class="text-center">${no}</th>
+      <td class="text-center">${no}</td>            <!-- คอลัมน์ 2: ลำดับ -->
+      <td>${escapeHtml(colC)}</td>                  <!-- คอลัมน์ 3: จาก Col C -->
+      <td>${escapeHtml(colD)}</td>                  <!-- คอลัมน์ 4: จาก Col D -->
+    `;
+    tbody.appendChild(tr);
+    no++;
+  }
+}
+  // ====== Modal open/close (simple display toggle) ======
+  function openmodal() {
+    const el = document.getElementById("showmodal");
+    if (el) el.style.display = "block";
+  }
+
+  function closemodal() {
+    const el = document.getElementById("showmodal");
+    if (el) el.style.display = "none";
+  }
+</script>
+
+
+        <!-- Back to Top -->
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/chart/chart.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+</body>
+
+</html>
