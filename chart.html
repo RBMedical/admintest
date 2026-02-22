@@ -3,38 +3,313 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test - Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
+  
     <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+ 
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
+   
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
+
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
+<style>
+:root{
+      --bg:#f3fbff;
+      --card:#ffffff;
+      --line:#d7eef7;
+      --text:#0f2b38;
+      --muted:#55707d;
+
+      --blue-50:#eaf7ff;
+      --blue-100:#d6f0ff;
+      --blue-500:#3bb3d6;
+      --blue-600:#229ec4;
+
+      --shadow: 0 10px 30px rgba(15, 43, 56, 0.10);
+      --radius: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: "Kanit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 450px at 20% 0%, var(--blue-100), transparent 60%),
+                  radial-gradient(900px 450px at 90% 10%, var(--blue-50), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 22px auto;
+      padding: 0 16px 40px;
+    }
+
+    /* ===== Top Bar ===== */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+    }
+    .title{
+      margin:0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 13px;
+    }
+
+    .searchbar{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .searchbar .barcode{
+      width: 320px;
+      max-width: 100%;
+    }
+
+    .btn{
+      border: 1px solid transparent;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: .15s ease;
+      white-space: nowrap;
+    }
+    .btn.primary{
+      background: linear-gradient(90deg, var(--blue-600), var(--blue-500));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(34,158,196,.20);
+    }
+    .btn.primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(34,158,196,.25);
+    }
+    .btn.ghost{
+      background: #fff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .btn.ghost:hover{ background: var(--blue-50); }
+
+    /* ===== Card ===== */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card-head{
+      padding: 16px 18px;
+      background: linear-gradient(90deg, rgba(59,179,214,.14), rgba(59,179,214,.06));
+      border-bottom: 1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .card-head h2{
+      margin:0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .card-body{ padding: 16px 18px 20px; }
+
+    /* ===== Inputs ===== */
+    label{ font-size: 13px; color: var(--muted); font-weight: 400; }
+    input, select{
+      width: 100%;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: .15s ease;
+      box-shadow: 0 0 0 rgba(59,179,214,0);
+    }
+    input:focus, select:focus{
+      border-color: rgba(59,179,214,.65);
+      box-shadow: 0 0 0 4px rgba(59,179,214,.15);
+    }
+
+    /* ===== General info grid ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      grid-column: span 6;
+    }
+    .field.full{ grid-column: span 12; }
+    .field.row3{ grid-column: span 4; } /* 3 ช่อง/แถว */
+
+    .hint{ font-size: 12px; color: var(--muted); font-weight: 300; }
+
+    /* ===== Vitals row (BP / Pulse) ===== */
+    .vitals{
+      display:flex;
+      align-items:flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 2px;
+    }
+    .vitals .bp{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .vitals .bp input{
+      width: 120px;
+      text-align:center;
+    }
+    .slash{
+      color: var(--muted);
+      font-weight: 500;
+      padding: 0 2px;
+    }
+    .vitals .pulse{
+      width: 180px;
+      max-width: 100%;
+    }
+
+    /* ===== Questionnaire table ===== */
+    .section-title{
+      margin: 16px -18px 0;
+      padding: 12px 18px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(59,179,214,.14), rgba(59,179,214,.06));
+    }
+    .section-title h2{ margin:0; font-size: 17px; font-weight: 600; }
+
+    .table-wrap{
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    table{
+      width:100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    thead th{
+      background: linear-gradient(90deg, var(--blue-600), var(--blue-500));
+      color: #fff;
+      padding: 12px 10px;
+      font-weight: 500;
+      font-size: 14px;
+      text-align: center;
+      border-right: 2px solid rgba(255,255,255,.25);
+    }
+    thead th:first-child{
+      text-align:left;
+      padding-left: 14px;
+    }
+    thead th:last-child{ border-right: none; }
+
+    tbody td{
+      padding: 10px 10px;
+      border-top: 1px solid var(--line);
+      background: #fbfeff;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+    tbody tr:nth-child(even) td{ background: #f2fbff; }
+    tbody td:first-child{
+      width: 56%;
+      padding-left: 14px;
+      color: #2f4b58;
+    }
+    tbody td.chk, thead th.chk{ width: 8%; text-align: center; }
+    input[type="radio"]{
+      width: 18px;
+      height: 18px;
+      accent-color: var(--blue-600);
+      cursor: pointer;
+    }
+    .details-input{
+      height: 34px;
+      border-radius: 10px;
+      background: #fff;
+    }
+    tbody td.details{ width: 28%; }
+
+    /* ===== Bottom actions ===== */
+    .actions{
+      display:flex;
+      gap: 10px;
+      justify-content:flex-end;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ✅ มือถือเท่านั้นให้ลงบรรทัดละ 1 ช่อง (แท็บเล็ตแนวตั้งยังคง 3 ช่อง/แถว) */
+    @media (max-width: 576px){
+      .topbar{ align-items:flex-start; }
+      .searchbar{ justify-content:flex-start; }
+      .field, .field.full, .field.row3{ grid-column: span 12; }
+      thead th{ font-size: 13px; }
+      .vitals .bp input{ width: 100px; }
+    }
+</style>
 
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+     
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -46,220 +321,215 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                    <h3 class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+  <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+</svg>Check Up</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+                        <h6 class="mb-0">Name</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
-                        </div>
-                    </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
-                        </div>
+     <a href="index.html" class="nav-item nav-link active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill" viewBox="0 0 16 16">
+  <path d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z"/>
+</svg>X Ray</a>
+
+ <a href="index.html" class="nav-item nav-link active mt-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+</svg> EKG</a>
+                  
                     </div>
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
+<div class="wrap">
+    <!-- ===== Header Row: left title / right barcode + buttons ===== -->
+    <div class="topbar">
+      <div class="brand">
+        <h1 class="title">ซักประวัติสุขภาพ</h1>
+        <p class="subtitle">กรุณากรอกข้อมูลให้ครบถ้วน และเลือกคำตอบให้ตรงกับความเป็นจริง</p>
+      </div>
 
-        <!-- Content Start -->
-        <div class="content">
-            <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-                </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
-                </form>
-                <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <!-- Navbar End -->
-
-
-            <!-- Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Single Line Chart</h6>
-                            <canvas id="line-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Multiple Line Chart</h6>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Single Bar Chart</h6>
-                            <canvas id="bar-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Multiple Bar Chart</h6>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Pie Chart</h6>
-                            <canvas id="pie-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Doughnut Chart</h6>
-                            <canvas id="doughnut-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Chart End -->
-
-
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer End -->
-        </div>
-        <!-- Content End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+      <div class="searchbar">
+        <input class="barcode" id="barcode" type="text" placeholder="สแกน/กรอกบาร์โค้ด..." />
+        <button type="button" class="btn primary" id="btnSearch">ค้นหา</button>
+        <button type="button" class="btn ghost" id="btnBack">ย้อนกลับ</button>
+      </div>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <form class="card" id="healthForm">
+      <div class="card-head">
+        <h2>ข้อมูลทั่วไป</h2>
+      </div>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+      <div class="card-body">
+        <div class="grid">
+          <!-- แถว 1 -->
+          <div class="field full">
+            <label for="fullname">ชื่อ - นามสกุล</label>
+            <input id="fullname" name="fullname" type="text" placeholder="เช่น สมชาย ใจดี" required>
+          </div>
+
+          <!-- แถว 2: อายุ / เพศ / หมู่เลือด -->
+          <div class="field row3">
+            <label for="age">อายุ (ปี)</label>
+            <input id="age" name="age" type="number" min="0" step="1" placeholder="เช่น 25" required>
+          </div>
+
+          <div class="field row3">
+            <label for="sex">เพศ</label>
+            <select id="sex" name="sex" required>
+              <option value="" selected disabled>เลือก</option>
+              <option value="male">ชาย</option>
+              <option value="female">หญิง</option>
+              <option value="other">อื่น ๆ</option>
+            </select>
+          </div>
+
+          <div class="field row3">
+            <label for="blood">หมู่โลหิต</label>
+            <select id="blood" name="blood" required>
+              <option value="" selected disabled>เลือก</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>
+          </div>
+
+          <!-- แถว 3: น้ำหนัก / ส่วนสูง / รอบเอว -->
+          <div class="field row3">
+            <label for="weight">น้ำหนัก (กก.)</label>
+            <input id="weight" name="weight" type="number" min="0" step="0.1" placeholder="เช่น 62.5">
+          </div>
+
+          <div class="field row3">
+            <label for="height">ส่วนสูง (ซม.)</label>
+            <input id="height" name="height" type="number" min="0" step="0.1" placeholder="เช่น 170">
+          </div>
+
+          <div class="field row3">
+            <label for="waist">รอบเอว (ซม.)</label>
+            <input id="waist" name="waist" type="number" min="0" step="0.1" placeholder="เช่น 78">
+          </div>
+
+          <!-- ✅ แถวถัดจาก น้ำหนัก/ส่วนสูง/รอบเอว: ความดันโลหิต + ชีพจร -->
+          <div class="field full">
+            <label>สัญญาณชีพ</label>
+            <div class="vitals">
+              <div class="bp">
+                <span style="color:var(--muted); font-size:13px;">ความดันโลหิต</span>
+                <input id="bp_sys" name="bp_sys" type="number" min="0" step="1" placeholder="___" inputmode="numeric" />
+                <span class="slash">/</span>
+                <input id="bp_dia" name="bp_dia" type="number" min="0" step="1" placeholder="___" inputmode="numeric" />
+                <span style="color:var(--muted); font-size:13px;">mmHg</span>
+              </div>
+
+              <div class="pulse">
+                <label for="pulse" style="margin:0 0 6px;">ชีพจร (ครั้ง/นาที)</label>
+                <input id="pulse" name="pulse" type="number" min="0" step="1" placeholder="เช่น 72" inputmode="numeric" />
+              </div>
+            </div>
+            <div class="hint" style="margin-top:6px;">* ช่องความดัน/ชีพจร สามารถเว้นว่างได้</div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h2>แบบสอบถาม (ตอบใช่/ไม่ใช่ และระบุรายละเอียดหากจำเป็น)</h2>
+        </div>
+
+        <div class="table-wrap">
+          <table aria-label="แบบสอบถามสุขภาพ">
+            <colgroup>
+              <col style="width:56%">
+              <col style="width:8%">
+              <col style="width:8%">
+              <col style="width:28%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>คำถาม</th>
+                <th class="chk">ใช่</th>
+                <th class="chk">ไม่ใช่</th>
+                <th>รายละเอียด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>คุณดื่มแอลกอฮอล์หรือไม่</td>
+                <td class="chk"><input type="radio" name="q1" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q1" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q1_detail" placeholder="เช่น ดื่มสัปดาห์ละ 1 ครั้ง"></td>
+              </tr>
+              <tr>
+                <td>คุณสูบบุหรี่หรือไม่</td>
+                <td class="chk"><input type="radio" name="q2" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q2" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q2_detail" placeholder="เช่น สูบวันละ 2 มวน"></td>
+              </tr>
+              <tr>
+                <td>คุณมีประวัติแพ้ยา/อาหารหรือไม่</td>
+                <td class="chk"><input type="radio" name="q3" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q3" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q3_detail" placeholder="ระบุชื่อยา/อาหาร"></td>
+              </tr>
+              <tr>
+                <td>คุณมีโรคประจำตัวหรือไม่</td>
+                <td class="chk"><input type="radio" name="q4" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q4" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q4_detail" placeholder="เช่น ความดัน เบาหวาน"></td>
+              </tr>
+              <tr>
+                <td>ญาติพี่น้องมีโรคประจำตัวหรือไม่</td>
+                <td class="chk"><input type="radio" name="q5" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q5" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q5_detail" placeholder="เช่น โรคหัวใจ"></td>
+              </tr>
+              <tr>
+                <td>คุณเคยเข้ารับการผ่าตัดหรือไม่</td>
+                <td class="chk"><input type="radio" name="q6" value="yes" required></td>
+                <td class="chk"><input type="radio" name="q6" value="no"></td>
+                <td class="details"><input class="details-input" type="text" name="q6_detail" placeholder="ระบุปี/ประเภทการผ่าตัด"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="actions">
+          <button type="reset" class="btn ghost">ล้างข้อมูล</button>
+          <button type="submit" class="btn primary">บันทึกแบบสอบถาม</button>
+        </div>
+      </div>
+    </form>
+  </div>
+          <!-- แถว 3: น้ำหนัก ส่วนสูง รอบเอว บรรทัดเดียวกัน -->
+         
+        <!-- Back to Top -->
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/chart/chart.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
 </body>
 
 </html>
