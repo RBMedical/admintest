@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Test - Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -33,14 +34,133 @@
 
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <style>
+  html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* 🔥 ปิด scroll ทั้งหน้า */
+}
     .header {
         display: flex;
         width: 100%;
        justify-content: space-between;
     }
+
+    .nav-link svg {
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  flex: 0 0 auto;
+  padding: 10px 20px;
+  background: #f8f9fa;
+}
+
+.app-content {
+  flex: 1 1 auto;
+  overflow: hidden; /* ไม่ให้เลื่อน */
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-footer {
+  flex: 0 0 auto;
+  padding: 10px;
+}
+
+.table-wrapper {
+  flex: 1;
+  overflow-y: auto;  /* 🔥 Scroll อยู่ตรงนี้ */
+  overflow-x: auto;
+  border: 1px solid #ddd;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+}
+
+/* Tablet แนวนอน 8-10 นิ้ว */
+@media (min-width: 900px) and (max-width: 1280px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 20px 30px;
+  }
+
+  /* เมนู */
+  .nav-link {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+
+  /* ตาราง */
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+
+  /* ช่องกรอกข้อมูล */
+  input, textarea, select {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  /* ปุ่ม */
+  button {
+    font-size: 16px;
+    padding: 10px 18px;
+  }
+
+}
+
+.app-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+@media (min-width: 900px) {
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1280px) {
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+}
 </style>
 
 <body>
@@ -59,7 +179,9 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Test</h3>
+                    <h3 class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+  <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+</svg>Check Up</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -74,8 +196,13 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+     <a href="index.html" class="nav-item nav-link active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill" viewBox="0 0 16 16">
+  <path d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z"/>
+</svg>X Ray</a>
+
+ <a href="index.html" class="nav-item nav-link active mt-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+</svg> EKG</a>
                   
                     </div>
                 </div>
@@ -207,41 +334,29 @@
                         <table id="specimenlist" class="table table-bordered" style="font-family: kanit;">
                             <colgroup>
                                 <col style="width: 5%;">
-                                <col style="width: 5%;">
-                                <col style="width: 28%;">
-                                <col style="width: 62%;">
+                                <col style="width: 20%;">
+                                <col style="width: 60%;">
+                                <col style="width: 15%;">
                             </colgroup>
                             <thead class="text-center" style="background-color:lightblue;">
                                 <tr>
                                     <th scope="col" >#</th>
-                                    <th scope="col" >ลำดับ</th>
-                                    <th scope="col">ID</th>
+                                    <th scope="col" >ID</th>
                                     <th scope="col">ชื่อ นามสกุล</th>
+                                    <th scope="col">specimen</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row" class="text-center" >1</th>
+                                    <td class="text-center"></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="text-center"></td>
+                                  
 
                                 </tr>
-                                <tr>
-                                    <th scope="row" class="text-center">2</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
@@ -276,237 +391,250 @@
 
 
 <script>
-  // ====== Globals ======
-  let fileHandle = null;     // handle ของไฟล์ที่เลือก
-  let workbook = null;       // workbook ทั้งไฟล์
-  let cachedData = [];       // จาก sheet "Data": [{id, idNorm, name}]
+let fileHandle = null;
+let workbook = null;
+let cachedData = [];
 
-  // ====== Helpers ======
-  function normalizeId(v) {
-    return String(v ?? "")
-      .trim()
-      .replace(/\s+/g, "")
-      .replace(/-/g, "")
-      .toUpperCase();
-  }
+function normalizeId(v){
+  return String(v ?? "").trim().replace(/\s+/g,"").replace(/-/g,"").toUpperCase();
+}
 
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, m => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    }[m]));
-  }
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[m]));
+}
 
-  // ====== 1) Pick Excel once (Chrome/Edge) ======
-  async function pickExcelOnce() {
-    if (!window.showOpenFilePicker) {
-      alert("ต้องใช้ Chrome/Edge และเปิดผ่าน https หรือ localhost");
-      return;
+// ================= SWEET ALERT HELPERS =================
+function showLoading(title="กำลังดำเนินการ..."){
+  Swal.fire({
+    title,
+    allowOutsideClick:false,
+    didOpen:()=>Swal.showLoading()
+  });
+}
+
+function showSuccess(title,text){
+  Swal.fire({
+    icon:'success',
+    title,
+    html:`<b>${text}</b>`,
+    timer:2000,
+    timerProgressBar:true,
+    showConfirmButton:false
+  });
+}
+
+function showError(text){
+  Swal.fire({
+    icon:'error',
+    title:'เกิดข้อผิดพลาด',
+    text
+  });
+}
+
+function showWarning(text){
+  Swal.fire({
+    icon:'warning',
+    title:'แจ้งเตือน',
+    text
+  });
+}
+// ======================================================
+
+
+// ====== PICK EXCEL ======
+async function pickExcelOnce(){
+  try{
+    if(!window.showOpenFilePicker){
+      return showError("ต้องใช้ Chrome/Edge ผ่าน https หรือ localhost");
     }
 
     [fileHandle] = await window.showOpenFilePicker({
-      multiple: false,
-      types: [{
-        description: "Excel",
-        accept: {
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
-          "application/vnd.ms-excel": [".xls"]
+      multiple:false,
+      types:[{
+        description:"Excel",
+        accept:{
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":[".xlsx"],
+          "application/vnd.ms-excel":[".xls"]
         }
       }]
     });
 
+    showLoading("กำลังโหลดไฟล์...");
+
     const file = await fileHandle.getFile();
     const buffer = await file.arrayBuffer();
-    workbook = XLSX.read(buffer, { type: "array" });
+    workbook = XLSX.read(buffer,{type:"array"});
 
-    console.log("SheetNames:", workbook.SheetNames);
-
-    // โหลด sheet Data -> cachedData
     loadDataSheet();
-
-    // แสดงตาราง Specimen ทันที
     showSpecimen();
 
-    alert(`เลือกไฟล์แล้ว ✅ Data โหลดได้ ${cachedData.length} แถว`);
+    Swal.close();
+    showSuccess("โหลดสำเร็จ",`อัพโหลดรายชื่อสำเร็จ จำนวน ${cachedData.length} ราย `);
+
+  }catch(err){
+    showError(err.message || "ไม่สามารถเปิดไฟล์ได้");
+  }
+}
+
+
+// ====== LOAD DATA SHEET ======
+function loadDataSheet(){
+  if(!workbook) return;
+
+  const dataName = workbook.SheetNames.find(n=>n.trim().toLowerCase()==="data");
+  if(!dataName){
+    cachedData=[];
+    return showError('ไม่พบชีตชื่อ "Data"');
   }
 
-  // ====== 2) Load sheet "Data" into cachedData ======
-  function loadDataSheet() {
-    if (!workbook) return;
+  const ws = workbook.Sheets[dataName];
+  const aoa = XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
+  const body = aoa.slice(1);
 
-    const dataName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "data");
-    if (!dataName) {
-      cachedData = [];
-      alert('ไม่พบชีตชื่อ "Data" (ดูชื่อชีตใน console: SheetNames)');
-      return;
-    }
+  cachedData = body
+    .filter(r=>normalizeId(r?.[0])!=="")
+    .map(r=>{
+      const idRaw=r?.[0];
+      const c=String(r?.[2]??"").trim();
+      const d=String(r?.[3]??"").trim();
+      const e=String(r?.[4]??"").trim();
+      return{
+        id:String(idRaw??"").trim(),
+        idNorm:normalizeId(idRaw),
+        name:[c,d,e].filter(Boolean).join(" ")
+      };
+    });
+}
 
-    const wsData = workbook.Sheets[dataName];
-    const aoa = XLSX.utils.sheet_to_json(wsData, { header: 1, defval: "" });
 
-    console.log("Data first rows:", aoa.slice(0, 5));
+// ====== SEARCH ======
+function submitSearch(e){
+  if(e) e.preventDefault();
 
-    // ถ้าแถวแรกเป็นหัวตาราง ให้ข้าม
-    const body = aoa.slice(1);
+  if(!cachedData.length)
+    return showWarning("กรุณาเลือกไฟล์ก่อน");
 
-    cachedData = body
-      .filter(r => normalizeId(r?.[0]) !== "")   // Column A ต้องมีค่า
-      .map(r => {
-        const idRaw = r?.[0];                    // A
-        const c = String(r?.[2] ?? "").trim();   // C
-        const d = String(r?.[3] ?? "").trim();   // D
-        const e = String(r?.[4] ?? "").trim();   // E
-        const name = [c, d, e].filter(Boolean).join(" ");
+  const key = normalizeId(document.getElementById("searchid")?.value);
+  if(!key) return showWarning("กรุณากรอก ID");
 
-        return {
-          id: String(idRaw ?? "").trim(),
-          idNorm: normalizeId(idRaw),
-          name
-        };
-      });
+  const found = cachedData.find(x=>x.idNorm===key);
 
-    console.log("cachedData sample:", cachedData.slice(0, 10));
+  if(found){
+    document.getElementById("showid").textContent = found.id;
+    document.getElementById("showname").textContent = found.name;
+    openmodal();
+  }else{
+    showError("ไม่พบ ID นี้");
   }
+}
 
-  // ====== 3) Search by ID from cachedData ======
-  function submitSearch(event) {
-    if (event) event.preventDefault();
 
-    const key = normalizeId(document.getElementById("searchid")?.value);
-    const showId = document.getElementById("showid");
-    const showName = document.getElementById("showname");
+// ====== ADD SPECIMEN ======
+async function addSpecimen(e){
+  if(e) e.preventDefault();
 
-    if (showId) showId.textContent = "";
-    if (showName) showName.textContent = "";
+  try{
 
-    if (!cachedData.length) {
-      alert("ยังไม่ได้โหลดข้อมูลจากชีต Data (กดเลือกไฟล์ก่อน)");
-      return;
+    if(!fileHandle||!workbook)
+      return showWarning("ยังไม่ได้เลือกไฟล์");
+
+    const id=document.getElementById("showid")?.textContent.trim();
+    const name=document.getElementById("showname")?.textContent.trim();
+
+    if(!id||!name)
+      return showWarning("ต้องค้นหา ID ให้พบก่อน");
+
+    const specName = workbook.SheetNames.find(n=>n.trim().toLowerCase()==="specimen");
+    if(!specName)
+      return showError('ไม่พบชีตชื่อ "Specimen"');
+
+    showLoading("กำลังบันทึกข้อมูล...");
+
+    const ws=workbook.Sheets[specName];
+    const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
+
+    let last=aoa.length-1;
+    while(last>=0&&(aoa[last]||[]).every(v=>String(v).trim()==="")) last--;
+    const nextRow=last+1;
+
+    const row=aoa[nextRow]?[...aoa[nextRow]]:[];
+    row[0]=id;
+    row[1]=name;
+    row[2]="X Ray";
+    aoa[nextRow]=row;
+
+    workbook.Sheets[specName]=XLSX.utils.aoa_to_sheet(aoa);
+
+    const perm=await fileHandle.requestPermission({mode:"readwrite"});
+    if(perm!=="granted"){
+      Swal.close();
+      return showError("ไม่ได้รับอนุญาตให้เขียนไฟล์");
     }
 
-    if (!key) {
-      alert("กรุณากรอก ID");
-      return;
-    }
-
-    const found = cachedData.find(x => x.idNorm === key);
-
-    if (found) {
-      if (showId) showId.textContent = found.id;
-      if (showName) showName.textContent = found.name;
-      openmodal();
-    } else {
-      alert("ไม่พบ ID นี้");
-    }
-  }
-
-  // ====== 4) Add to sheet "Specimen": C=id, D=name, E='X Ray' ======
-  async function addSpecimen(event) {
-    if (event) event.preventDefault();
-
-    if (!fileHandle || !workbook) {
-      alert("ยังไม่ได้เลือกไฟล์ Excel (กดปุ่มเลือกไฟล์ก่อน)");
-      return;
-    }
-
-    const id = (document.getElementById("showid")?.textContent || "").trim();
-    const name = (document.getElementById("showname")?.textContent || "").trim();
-
-    if (!id || !name) {
-      alert("ยังไม่มี ID/Name ให้บันทึก (ต้องค้นหาให้พบก่อน)");
-      return;
-    }
-
-    const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
-    if (!specName) {
-      alert('ไม่พบชีตชื่อ "Specimen"');
-      return;
-    }
-
-    const ws = workbook.Sheets[specName];
-    const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
-
-    // หาแถวสุดท้ายที่มีข้อมูลจริง
-    let last = aoa.length - 1;
-    while (last >= 0 && (aoa[last] || []).every(v => String(v).trim() === "")) last--;
-    const nextRow = last + 1;
-
-    // A=0,B=1,C=2,D=3,E=4
-    const row = aoa[nextRow] ? [...aoa[nextRow]] : [];
-    row[2] = id;       // Column C
-    row[3] = name;     // Column D
-    row[4] = "X Ray";  // Column E
-    aoa[nextRow] = row;
-
-    workbook.Sheets[specName] = XLSX.utils.aoa_to_sheet(aoa);
-
-    // ขอสิทธิ์เขียน แล้วเขียนทับไฟล์เดิม
-    const perm = await fileHandle.requestPermission({ mode: "readwrite" });
-    if (perm !== "granted") {
-      alert("ไม่ได้รับอนุญาตให้เขียนไฟล์");
-      return;
-    }
-
-    const writable = await fileHandle.createWritable();
-    const out = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    const writable=await fileHandle.createWritable();
+    const out=XLSX.write(workbook,{bookType:"xlsx",type:"array"});
     await writable.write(out);
     await writable.close();
 
-    // refresh ตาราง specimen ทุกครั้ง
+    Swal.close();
+    showSuccess("บันทึกสำเร็จ","ข้อมูลถูกเพิ่มใน Specimen แล้ว");
+
     showSpecimen();
     closemodal();
 
-    alert("บันทึกสำเร็จ✅");
+  }catch(err){
+    Swal.close();
+    showError(err.message || "บันทึกไม่สำเร็จ");
   }
+}
 
-  // ====== 5) Show sheet "Specimen" on table #specimenlist ======
-  function showSpecimen() {
-  if (!workbook) return;
 
-  const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
-  if (!specName) return;
+// ====== SHOW SPECIMEN ======
+function showSpecimen(){
+  if(!workbook) return;
 
-  const ws = workbook.Sheets[specName];
-  const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+  const specName=workbook.SheetNames.find(n=>n.trim().toLowerCase()==="specimen");
+  if(!specName) return;
 
-  const tbody = document.querySelector("#specimenlist tbody");
-  if (!tbody) return;
+  const ws=workbook.Sheets[specName];
+  const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
+  const tbody=document.querySelector("#specimenlist tbody");
+  if(!tbody) return;
 
-  tbody.innerHTML = "";
+  tbody.innerHTML="";
+  let no=1;
 
-  const start = 0; // ถ้าแถวแรกใน Specimen เป็นหัวตาราง ให้เปลี่ยนเป็น 1
+  for(let i=1;i<aoa.length;i++){
+    const r=aoa[i]||[];
+    const colA=String(r[0]??"").trim();
+    const colB=String(r[1]??"").trim();
+    const colC=String(r[2]??"").trim();
 
-  let no = 1;
-  for (let i = start; i < aoa.length; i++) {
-    const r = aoa[i] || [];
+    if(!colA&&!colB&&!colC) continue;
+    if(colC.toLowerCase()!=="x ray") continue;
 
-    const colC = String(r[2] ?? "").trim(); // Specimen Col C
-    const colD = String(r[3] ?? "").trim(); // Specimen Col D
-
-    if (!colC && !colD) continue;
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <th scope="row" class="text-center">${no}</th>
-      <td class="text-center">${no}</td>            <!-- คอลัมน์ 2: ลำดับ -->
-      <td>${escapeHtml(colC)}</td>                  <!-- คอลัมน์ 3: จาก Col C -->
-      <td>${escapeHtml(colD)}</td>                  <!-- คอลัมน์ 4: จาก Col D -->
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <th class="text-center">${no}</th>
+      <td  class="text-center">${escapeHtml(colA)}</td>
+      <td>${escapeHtml(colB)}</td>
+      <td  class="text-center">${escapeHtml(colC)}</td>
     `;
     tbody.appendChild(tr);
     no++;
   }
 }
-  // ====== Modal open/close (simple display toggle) ======
-  function openmodal() {
-    const el = document.getElementById("showmodal");
-    if (el) el.style.display = "block";
-  }
 
-  function closemodal() {
-    const el = document.getElementById("showmodal");
-    if (el) el.style.display = "none";
-  }
+function openmodal(){
+  document.getElementById("showmodal").style.display="block";
+}
+
+function closemodal(){
+  document.getElementById("showmodal").style.display="none";
+}
 </script>
-
 
         <!-- Back to Top -->
 
