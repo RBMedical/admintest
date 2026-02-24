@@ -91,6 +91,27 @@
       flex: 0 0 auto;
     }
 
+    /* ✅ เพิ่ม: ลิงก์ Log Out มุมขวาบนของ Navbar */
+    .logout-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+     
+      text-decoration: none;
+      color: #0f2b38;
+     
+      background: #f3fbff;
+      transition: .15s ease;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .logout-link:hover {
+      background: #f3fbff;
+      transform: translateY(-1px);
+    }
+
     /* wrap ต้องเป็นคอลัมน์และกินความสูงที่เหลือ เพื่อทำ scroll ด้านใน */
     .wrap {
       flex: 1;
@@ -112,11 +133,11 @@
       margin-bottom: 14px;
 
       position: sticky;
-      top: 0;                 /* ตรึงภายใน .wrap */
+      top: 0;
       z-index: 50;
-      background: var(--bg);  /* กันพื้นหลังโปร่ง */
+      background: var(--bg);
       padding: 10px 0;
-      border-bottom: 2px solid rgb(196, 251, 253); 
+      border-bottom:2px #f3fbff;
     }
 
     .brand {
@@ -264,7 +285,11 @@
     }
 
     .field.full {
-      grid-column: span 12;
+      grid-column: span 8;
+    }
+
+    .field.row2 {
+      grid-column: span 4;
     }
 
     .field.row3 {
@@ -535,7 +560,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill"
               viewBox="0 0 16 16">
               <path
-                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
+                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.540-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
             </svg>
             X Ray
           </a>
@@ -586,247 +611,407 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
         <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
           <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
         </a>
+
         <a href="#" class="sidebar-toggler flex-shrink-0">
           <i class="fa fa-bars"></i>
         </a>
-        <form class="d-none d-md-flex ms-4">
-          <input class="form-control border-0" type="search" placeholder="Search" />
-        </form>
-        <div class="navbar-nav align-items-center ms-auto">
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <i class="fa fa-envelope me-lg-2"></i>
-              <span class="d-none d-lg-inline-flex">Message</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-              <a href="#" class="dropdown-item">
-                <div class="d-flex align-items-center">
-                  <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;" />
-                  <div class="ms-2">
-                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                    <small>15 minutes ago</small>
-                  </div>
-                </div>
-              </a>
-              <hr class="dropdown-divider" />
-              <a href="#" class="dropdown-item text-center">See all message</a>
-            </div>
-          </div>
 
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <i class="fa fa-bell me-lg-2"></i>
-              <span class="d-none d-lg-inline-flex">Notificatin</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-              <a href="#" class="dropdown-item">
-                <h6 class="fw-normal mb-0">Profile updated</h6>
-                <small>15 minutes ago</small>
-              </a>
-              <hr class="dropdown-divider" />
-              <a href="#" class="dropdown-item text-center">See all notifications</a>
-            </div>
-          </div>
+        <!-- ✅ เอา element ในกรอบแดงออก: (Search + icon/message/notification/profile ทั้งหมด) -->
 
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <img class="rounded-circle me-lg-2" src="" alt="" style="width: 40px; height: 40px;" />
-              <span class="d-none d-lg-inline-flex">Name</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-              <a href="#" class="dropdown-item">My Profile</a>
-              <a href="#" class="dropdown-item">Settings</a>
-              <a href="#" class="dropdown-item">Log Out</a>
-            </div>
-          </div>
+        <!-- ✅ ใส่ Log Out มุมขวาสุด -->
+        <div class="ms-auto d-flex align-items-center">
+          <a href="#" class="logout-link">
+            <i class="fa fa-sign-out-alt"></i>
+            Log Out
+          </a>
         </div>
       </nav>
-      <!-- Navbar End -->
 
-      <div class="wrap">
-        <!-- ===== Header Row: left title / right barcode + buttons ===== -->
-        <div class="topbar">
-          <div class="brand">
-            <h1 class="title">ซักประวัติสุขภาพ</h1>
-            <p class="subtitle">กรุณากรอกข้อมูลให้ครบถ้วน และเลือกคำตอบให้ตรงกับความเป็นจริง</p>
+     <div class="container-fluid mt-4" style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
+        <!-- row search -->
+        <div class="row align-items-start w-100">
+          <div class="col-10">
+            <form class="row g-2">
+              <div class="col-6 ms-4">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchid" placeholder="Barcode Here">
+                </div>
+              </div>
+              <div class="col-auto">
+                <button type="button" id="submit" onclick="submitSearch(event)" class="btn btn-primary">Search</button>
+              </div>
+            </form>
           </div>
 
-          <div class="searchbar">
-            <input class="barcode" id="barcode" type="text" placeholder="สแกน/กรอกบาร์โค้ด..." />
-            <button type="button" class="btn primary" id="btnSearch">ค้นหา</button>
-            <button type="button" class="btn ghost" id="btnBack">ย้อนกลับ</button>
+          <div class="col-2 text-end">
+            <button type="button" class="btn btn-primary" onclick="pickExcelOnce()">+</button>
           </div>
         </div>
 
-        <!-- ✅ scroll อยู่ตรงนี้ -->
-        <div class="page-scroll">
-          <form class="card" id="healthForm">
-            <div class="card-head">
-              <h2>ข้อมูลทั่วไป</h2>
+        <!-- checkbox bar -->
+        <div class="specimen-bar ms-4 me-4">
+          <label class="specimen-pill t-edta">
+            <input type="checkbox" id="sp_edta" name="specimen" value="EDTA">
+            <span class="specimen-name">EDTA</span>
+          </label>
+
+          <label class="specimen-pill t-naf">
+            <input type="checkbox" id="sp_naf" name="specimen" value="Naf">
+            <span class="specimen-name">Naf</span>
+          </label>
+
+          <label class="specimen-pill t-clot">
+            <input type="checkbox" id="sp_clot" name="specimen" value="Clot">
+            <span class="specimen-name">Clot</span>
+          </label>
+
+          <label class="specimen-pill t-citrate">
+            <input type="checkbox" id="sp_citrate" name="specimen" value="Sodium Citrate">
+            <span class="specimen-name">Sodium Citrate</span>
+          </label>
+
+          <label class="specimen-pill t-hep">
+            <input type="checkbox" id="sp_hep" name="specimen" value="Hepaline">
+            <span class="specimen-name">Hepaline</span>
+          </label>
+        </div>
+
+        <!-- table area -->
+        <div class="container-fluid pt-2 px-4" style="flex:1; overflow:hidden;">
+          <div class="bg-light rounded h-100 p-4" style="height:100%; overflow:hidden; display:flex; flex-direction:column;">
+            <h6 class="mb-3">Bordered Table</h6>
+
+            <!-- ✅ สำคัญ: ครอบตารางด้วย table-wrapper -->
+            <div class="table-wrapper">
+              <table id="specimenlist" class="table table-bordered" style="font-family: kanit;">
+                <colgroup>
+                  <col style="width: 5%;">
+                  <col style="width: 20%;">
+                  <col style="width: 60%;">
+                  <col style="width: 15%;">
+                </colgroup>
+                <thead class="text-center" style="background-color:lightblue;">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">ชื่อ นามสกุล</th>
+                    <th scope="col">specimen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="text-center">1</th>
+                    <td class="text-center"></td>
+                    <td></td>
+                    <td class="text-center"></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-            <div class="card-body">
-              <div class="grid">
-                <div class="field full">
-                  <label for="fullname">ชื่อ - นามสกุล</label>
-                  <input id="fullname" name="fullname" type="text" placeholder="เช่น สมชาย ใจดี" required />
-                </div>
-
-                <div class="field row3">
-                  <label for="age">อายุ (ปี)</label>
-                  <input id="age" name="age" type="number" min="0" step="1" placeholder="เช่น 25" required />
-                </div>
-
-                <div class="field row3">
-                  <label for="sex">เพศ</label>
-                  <select id="sex" name="sex" required>
-                    <option value="" selected disabled>เลือก</option>
-                    <option value="male">ชาย</option>
-                    <option value="female">หญิง</option>
-                    <option value="other">อื่น ๆ</option>
-                  </select>
-                </div>
-
-                <div class="field row3">
-                  <label for="blood">หมู่โลหิต</label>
-                  <select id="blood" name="blood" required>
-                    <option value="" selected disabled>เลือก</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="AB">AB</option>
-                    <option value="O">O</option>
-                  </select>
-                </div>
-
-                <div class="field row3">
-                  <label for="weight">น้ำหนัก (กก.)</label>
-                  <input id="weight" name="weight" type="number" min="0" step="0.1" placeholder="เช่น 62.5" />
-                </div>
-
-                <div class="field row3">
-                  <label for="height">ส่วนสูง (ซม.)</label>
-                  <input id="height" name="height" type="number" min="0" step="0.1" placeholder="เช่น 170" />
-                </div>
-
-                <div class="field row3">
-                  <label for="waist">รอบเอว (ซม.)</label>
-                  <input id="waist" name="waist" type="number" min="0" step="0.1" placeholder="เช่น 78" />
-                </div>
-
-                <div class="field full">
-                  <label>สัญญาณชีพ</label>
-                  <div class="vitals">
-                    <div class="bp">
-                      <span style="color:var(--muted); font-size:13px;">ความดันโลหิต</span>
-                      <input id="bp_sys" name="bp_sys" type="number" min="0" step="1" placeholder="___"
-                        inputmode="numeric" />
-                      <span class="slash">/</span>
-                      <input id="bp_dia" name="bp_dia" type="number" min="0" step="1" placeholder="___"
-                        inputmode="numeric" />
-                      <span style="color:var(--muted); font-size:13px;">mmHg</span>
-                    </div>
-
-                    <div class="pulse">
-                      <label for="pulse" style="margin:0 0 6px;">ชีพจร (ครั้ง/นาที)</label>
-                      <input id="pulse" name="pulse" type="number" min="0" step="1" placeholder="เช่น 72"
-                        inputmode="numeric" />
-                    </div>
-                  </div>
-                  <div class="hint" style="margin-top:6px;">* ช่องความดัน/ชีพจร สามารถเว้นว่างได้</div>
-                </div>
-              </div>
-
-              <div class="section-title">
-                <h2>แบบสอบถาม (ตอบใช่/ไม่ใช่ และระบุรายละเอียดหากจำเป็น)</h2>
-              </div>
-
-              <div class="table-wrap">
-                <table aria-label="แบบสอบถามสุขภาพ">
-                  <colgroup>
-                    <col style="width:56%">
-                    <col style="width:8%">
-                    <col style="width:8%">
-                    <col style="width:28%">
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th>คำถาม</th>
-                      <th class="chk">ใช่</th>
-                      <th class="chk">ไม่ใช่</th>
-                      <th>รายละเอียด</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>คุณดื่มแอลกอฮอล์หรือไม่</td>
-                      <td class="chk"><input type="radio" name="q1" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q1" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q1_detail"
-                          placeholder="เช่น ดื่มสัปดาห์ละ 1 ครั้ง"></td>
-                    </tr>
-                    <tr>
-                      <td>คุณสูบบุหรี่หรือไม่</td>
-                      <td class="chk"><input type="radio" name="q2" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q2" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q2_detail"
-                          placeholder="เช่น สูบวันละ 2 มวน"></td>
-                    </tr>
-                    <tr>
-                      <td>คุณมีประวัติแพ้ยา/อาหารหรือไม่</td>
-                      <td class="chk"><input type="radio" name="q3" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q3" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q3_detail"
-                          placeholder="ระบุชื่อยา/อาหาร"></td>
-                    </tr>
-                    <tr>
-                      <td>คุณมีโรคประจำตัวหรือไม่</td>
-                      <td class="chk"><input type="radio" name="q4" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q4" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q4_detail"
-                          placeholder="เช่น ความดัน เบาหวาน"></td>
-                    </tr>
-                    <tr>
-                      <td>ญาติพี่น้องมีโรคประจำตัวหรือไม่</td>
-                      <td class="chk"><input type="radio" name="q5" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q5" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q5_detail"
-                          placeholder="เช่น โรคหัวใจ"></td>
-                    </tr>
-                    <tr>
-                      <td>คุณเคยเข้ารับการผ่าตัดหรือไม่</td>
-                      <td class="chk"><input type="radio" name="q6" value="yes" required></td>
-                      <td class="chk"><input type="radio" name="q6" value="no"></td>
-                      <td class="details"><input class="details-input" type="text" name="q6_detail"
-                          placeholder="ระบุปี/ประเภทการผ่าตัด"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="actions">
-                <button type="reset" class="btn ghost">ล้างข้อมูล</button>
-                <button type="submit" class="btn primary">บันทึกแบบสอบถาม</button>
-              </div>
-            </div>
-          </form>
+            <!-- /table-wrapper -->
+          </div>
         </div>
       </div>
+    </div>
+    <!-- Content End -->
+  </div>
 
-      <!-- JavaScript Libraries -->
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="lib/chart/chart.min.js"></script>
-      <script src="lib/easing/easing.min.js"></script>
-      <script src="lib/waypoints/waypoints.min.js"></script>
-      <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-      <script src="lib/tempusdominus/js/moment.min.js"></script>
-      <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-      <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- ✅ Modal (แก้แท็กให้ครบ) -->
+  <div class="modal" id="showmodal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: lightsteelblue;">
+        <div class="modal-header">
+          <h5 class="modal-title">Chest X-Ray</h5>
+          <button type="button" class="btn-close" aria-label="Close" onclick="closemodal()"></button>
+        </div>
 
-      <!-- Template Javascript -->
-      <script src="js/main.js"></script>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-sm-4">
+              <span class="form-control" id="showid"></span>
+            </div>
+            <div class="col-sm-8">
+              <span class="form-control" id="showname"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closemodal()">Close</button>
+          <button id="addspecimen" type="button" onclick="addSpecimen(event)" class="btn btn-primary">Input</button>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    let fileHandle = null;
+    let workbook = null;
+    let cachedData = [];
+
+    function normalizeId(v) {
+      return String(v ?? "").trim().replace(/\s+/g, "").replace(/-/g, "").toUpperCase();
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[m]));
+    }
+
+    // ================= SWEET ALERT HELPERS =================
+    function showLoading(title = "กำลังดำเนินการ...") {
+      Swal.fire({
+        title,
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+    }
+
+    function showSuccess(title, text) {
+      Swal.fire({
+        icon: 'success',
+        title,
+        html: `<b>${text}</b>`,
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+    }
+
+    function showError(text) {
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text
+      });
+    }
+
+    function showWarning(text) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'แจ้งเตือน',
+        text
+      });
+    }
+    // ======================================================
+
+    function openmodal() {
+      document.getElementById("showmodal").style.display = "block";
+    }
+    function closemodal() {
+      document.getElementById("showmodal").style.display = "none";
+    }
+
+    // ====== PICK EXCEL ======
+    async function pickExcelOnce() {
+      try {
+        if (!window.showOpenFilePicker) {
+          return showError("ต้องใช้ Chrome/Edge ผ่าน https หรือ localhost");
+        }
+
+        [fileHandle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{
+            description: "Excel",
+            accept: {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+              "application/vnd.ms-excel": [".xls"]
+            }
+          }]
+        });
+
+        showLoading("กำลังโหลดไฟล์...");
+
+        const file = await fileHandle.getFile();
+        const buffer = await file.arrayBuffer();
+        workbook = XLSX.read(buffer, { type: "array" });
+
+        loadDataSheet();
+        showSpecimen();
+
+        Swal.close();
+        showSuccess("โหลดสำเร็จ", `อัพโหลดรายชื่อสำเร็จ จำนวน ${cachedData.length} ราย`);
+
+      } catch (err) {
+        Swal.close();
+        showError(err.message || "ไม่สามารถเปิดไฟล์ได้");
+      }
+    }
+
+    // ====== LOAD DATA SHEET ======
+    function loadDataSheet() {
+      if (!workbook) return;
+
+      const dataName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "data");
+      if (!dataName) {
+        cachedData = [];
+        return showError('ไม่พบชีตชื่อ "Data"');
+      }
+
+      const ws = workbook.Sheets[dataName];
+      const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+      const body = aoa.slice(1);
+
+      cachedData = body
+        .filter(r => normalizeId(r?.[0]) !== "")
+        .map(r => {
+          const idRaw = r?.[0];
+          const c = String(r?.[2] ?? "").trim();
+          const d = String(r?.[3] ?? "").trim();
+          const e = String(r?.[4] ?? "").trim();
+          return {
+            id: String(idRaw ?? "").trim(),
+            idNorm: normalizeId(idRaw),
+            name: [c, d, e].filter(Boolean).join(" ")
+          };
+        });
+    }
+
+    // ====== SEARCH ======
+    function submitSearch(e) {
+      if (e) e.preventDefault();
+
+      if (!cachedData.length)
+        return showWarning("กรุณาเลือกไฟล์ก่อน");
+
+      const key = normalizeId(document.getElementById("searchid")?.value);
+      if (!key) return showWarning("กรุณากรอก ID");
+
+      const found = cachedData.find(x => x.idNorm === key);
+
+      if (found) {
+        document.getElementById("showid").textContent = found.id;
+        document.getElementById("showname").textContent = found.name;
+        openmodal();
+      } else {
+        showError("ไม่พบ ID นี้");
+      }
+    }
+
+    // ====== ADD SPECIMEN ======
+    async function addSpecimen(e) {
+      if (e) e.preventDefault();
+
+      try {
+        if (!fileHandle || !workbook)
+          return showWarning("ยังไม่ได้เลือกไฟล์");
+
+        const id = (document.getElementById("showid")?.textContent || "").trim();
+        const name = (document.getElementById("showname")?.textContent || "").trim();
+
+        if (!id || !name)
+          return showWarning("ต้องค้นหา ID ให้พบก่อน");
+
+        const selected = [...document.querySelectorAll('.specimen-bar input[type="checkbox"]:checked')]
+          .map(cb => (cb.value || "").trim())
+          .filter(Boolean);
+
+        if (selected.length === 0)
+          return showWarning("กรุณาเลือกชนิดหลอดอย่างน้อย 1 รายการ");
+
+        const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
+        if (!specName)
+          return showError('ไม่พบชีตชื่อ "Specimen"');
+
+        showLoading("กำลังบันทึกข้อมูล...");
+
+        const ws = workbook.Sheets[specName];
+        const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+
+        let last = aoa.length - 1;
+        while (last >= 0 && (aoa[last] || []).every(v => String(v).trim() === "")) last--;
+        let nextRow = last + 1;
+
+        for (const sp of selected) {
+          const row = aoa[nextRow] ? [...aoa[nextRow]] : [];
+          row[0] = id;          // A
+          row[1] = name;        // B
+          row[2] = "เจาะเลือด"; // C
+          row[3] = sp;          // D = specimen
+          aoa[nextRow] = row;
+          nextRow++;
+        }
+
+        workbook.Sheets[specName] = XLSX.utils.aoa_to_sheet(aoa);
+
+        const perm = await fileHandle.requestPermission({ mode: "readwrite" });
+        if (perm !== "granted") {
+          Swal.close();
+          return showError("ไม่ได้รับอนุญาตให้เขียนไฟล์");
+        }
+
+        const writable = await fileHandle.createWritable();
+        const out = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+        await writable.write(out);
+        await writable.close();
+
+        Swal.close();
+        showSuccess("บันทึกสำเร็จ", `เพิ่ม ${selected.length} รายการใน Specimen แล้ว`);
+
+        showSpecimen();
+        closemodal();
+        document.querySelectorAll('.specimen-bar input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+      } catch (err) {
+        Swal.close();
+        showError(err.message || "บันทึกไม่สำเร็จ");
+      }
+    }
+
+    // ====== SHOW SPECIMEN ======
+    function showSpecimen() {
+      if (!workbook) return;
+
+      const specName = workbook.SheetNames.find(n => n.trim().toLowerCase() === "specimen");
+      if (!specName) return;
+
+      const ws = workbook.Sheets[specName];
+      const aoa = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+
+      const tbody = document.querySelector("#specimenlist tbody");
+      if (!tbody) return;
+
+      tbody.innerHTML = "";
+      let no = 1;
+
+      const allowed = new Set(["edta", "naf", "clot", "hepaline", "sodium citrate"]);
+
+      for (let i = 1; i < aoa.length; i++) {
+        const r = aoa[i] || [];
+        const colA = String(r[0] ?? "").trim();
+        const colB = String(r[1] ?? "").trim();
+        const colD = String(r[3] ?? "").trim();
+
+        if (!colA && !colB && !colD) continue;
+        if (!allowed.has(colD.toLowerCase())) continue;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <th class="text-center">${no}</th>
+          <td class="text-center">${escapeHtml(colA)}</td>
+          <td>${escapeHtml(colB)}</td>
+          <td class="text-center">${escapeHtml(colD)}</td>
+        `;
+        tbody.appendChild(tr);
+        no++;
+      }
+    }
+  </script>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/chart/chart.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/tempusdominus/js/moment.min.js"></script>
+  <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+  <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
 </body>
 
 </html>
