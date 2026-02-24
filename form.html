@@ -172,20 +172,93 @@
 </style>
 
 <body>
-  <div class="container-fluid position-relative bg-white d-flex p-0">
-
-    <!-- Spinner Start -->
+   <div class="container-fluid position-relative bg-white d-flex p-0">
     <div id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
       <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <!-- Spinner End -->
 
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
-    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+      <nav class="navbar bg-light navbar-light">
+        <a href="index.html" class="navbar-brand mx-4 mb-3">
+          <h3 class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-hospital-fill" viewBox="0 0 16 16">
+              <path
+                d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25" />
+            </svg>
+            Check Up
+          </h3>
+        </a>
+
+        <div class="d-flex align-items-center ms-4 mb-4">
+          <div class="position-relative">
+            <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;" />
+            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+            </div>
+          </div>
+          <div class="ms-3">
+            <h6 class="mb-0">Name</h6>
+            <span>Admin</span>
+          </div>
+        </div>
+
+        <div class="navbar-nav w-100">
+          <a href="index.html" class="nav-item nav-link mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.540-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
+            </svg>
+            X Ray
+          </a>
+
+          <a href="index.html" class="nav-item nav-link mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
+            </svg>
+            EKG
+          </a>
+
+          <a href="chart.html" class="nav-item nav-link mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
+              <path
+                d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5" />
+              <path
+                d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5M9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z" />
+            </svg>
+            ซักประวัติ
+          </a>
+
+          <a href="form.html" class="nav-item nav-link active mt-3">
+            <svg fill="#000000" height="20px" width="15px" version="1.1" id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297 297"
+              xml:space="preserve">
+              <path
+                d="M294.081,72.683L224.316,2.918c-3.891-3.889-10.2-3.891-14.095,0l-23.256,23.255c-1.869,1.869-2.919,4.404-2.919,7.047
+s1.05,5.178,2.919,7.047l4.581,4.581L12.552,223.843C4.458,231.936,0,242.698,0,254.144c0,11.447,4.458,22.208,12.552,30.303
+c8.094,8.094,18.857,12.552,30.303,12.552s22.208-4.458,30.302-12.552l178.995-178.995l4.581,4.581
+c1.87,1.869,4.404,2.919,7.047,2.919c2.643,0,5.179-1.05,7.047-2.919l23.255-23.256C297.973,82.886,297.973,76.575,294.081,72.683z
+M59.062,270.353c-4.329,4.33-10.085,6.714-16.207,6.714s-11.879-2.384-16.208-6.714c-4.33-4.329-6.714-10.086-6.714-16.208
+c0-6.123,2.384-11.878,6.714-16.207l120.856-120.856l32.416,32.416L59.062,270.353z M194.013,135.402l-32.416-32.416l44.044-44.044
+l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671,55.671L263.779,88.892z" />
+            </svg>
+            เจาะเลือด
+          </a>
+        </div>
+      </nav>
+    </div>
+    <!-- Sidebar End -->
+
+    <div class="content">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
         <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
           <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
         </a>
@@ -203,64 +276,6 @@
             Log Out
           </a>
         </div>
-      </nav>
-      <!-- Navb
-
-        <div class="navbar-nav w-100">
-          <a href="index.html" class="nav-item nav-link active mt-5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill"
-              viewBox="0 0 16 16">
-              <path
-                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
-            </svg>X Ray
-          </a>
-
-          <a href="index.html" class="nav-item nav-link mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
-            </svg>EKG
-          </a>
-
-          <a href="chart.html" class="nav-item nav-link mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
-              <path
-                d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5" />
-              <path
-                d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5M9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z" />
-            </svg>ซักประวัติ
-          </a>
-
-           <a href="chart.html" class="nav-item nav-link active mt-3"><svg fill="#000000" height="20px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 297 297" xml:space="preserve">
-<path d="M294.081,72.683L224.316,2.918c-3.891-3.889-10.2-3.891-14.095,0l-23.256,23.255c-1.869,1.869-2.919,4.404-2.919,7.047
-	s1.05,5.178,2.919,7.047l4.581,4.581L12.552,223.843C4.458,231.936,0,242.698,0,254.144c0,11.447,4.458,22.208,12.552,30.303
-	c8.094,8.094,18.857,12.552,30.303,12.552s22.208-4.458,30.302-12.552l178.995-178.995l4.581,4.581
-	c1.87,1.869,4.404,2.919,7.047,2.919c2.643,0,5.179-1.05,7.047-2.919l23.255-23.256C297.973,82.886,297.973,76.575,294.081,72.683z
-	 M59.062,270.353c-4.329,4.33-10.085,6.714-16.207,6.714s-11.879-2.384-16.208-6.714c-4.33-4.329-6.714-10.086-6.714-16.208
-	c0-6.123,2.384-11.878,6.714-16.207l120.856-120.856l32.416,32.416L59.062,270.353z M194.013,135.402l-32.416-32.416l44.044-44.044
-	l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671,55.671L263.779,88.892z"/>
-</svg> เจาะเลือด</a>
-        </div>
-      </nav>
-    </div>
-    <!-- Sidebar End -->
-
-    <!-- Content Start -->
-    <div class="content">
-      <!-- Navbar Start -->
-      <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-          <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-        </a>
-        <a href="#" class="sidebar-toggler flex-shrink-0">
-          <i class="fa fa-bars"></i>
-        </a>
-        <form class="d-none d-md-flex ms-4">
-          <input class="form-control border-0" type="search" placeholder="Search">
-        </form>
       </nav>
 
       <!-- ✅ ส่วนนี้ไม่เลื่อนทั้งหน้า แต่ตารางจะเลื่อนใน table-wrapper -->
@@ -652,4 +667,3 @@
 </body>
 
 </html>
-
