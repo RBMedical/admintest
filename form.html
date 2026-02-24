@@ -2,532 +2,186 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Test - Admin</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <meta content="" name="keywords" />
-  <meta content="" name="description" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-  <link href="img/favicon.ico" rel="icon" />
+  <link href="img/favicon.ico" rel="icon">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet">
 
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <style>
-    :root {
-      --bg: #f3fbff;
-      --card: #ffffff;
-      --line: #d7eef7;
-      --text: #0f2b38;
-      --muted: #55707d;
-
-      --blue-50: #eaf7ff;
-      --blue-100: #d6f0ff;
-      --blue-500: #3bb3d6;
-      --blue-600: #229ec4;
-
-      --shadow: 0 10px 30px rgba(15, 43, 56, 0.10);
-      --radius: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Kanit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 450px at 20% 0%, var(--blue-100), transparent 60%),
-        radial-gradient(900px 450px at 90% 10%, var(--blue-50), transparent 60%),
-        var(--bg);
-      color: var(--text);
-    }
-
-    /* 🔥 ปิด scroll ทั้งหน้า */
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    /* ===== Layout: ให้ scroll อยู่ที่ content ไม่ใช่ทั้งหน้า ===== */
-    .container-fluid.position-relative.bg-white.d-flex.p-0 {
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .content {
-      flex: 1;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      padding: 0;
-    }
-
-    /* Navbar ของ template ตรึงอยู่แล้วด้วย sticky-top */
-    .navbar.sticky-top {
-      flex: 0 0 auto;
-    }
-
-    /* ✅ เพิ่ม: ลิงก์ Log Out มุมขวาบนของ Navbar */
-    .logout-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-     
-      text-decoration: none;
-      color: #0f2b38;
-     
-      background: #f3fbff;
-      transition: .15s ease;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .logout-link:hover {
-      background: #f3fbff;
-      transform: translateY(-1px);
-    }
-
-    /* wrap ต้องเป็นคอลัมน์และกินความสูงที่เหลือ เพื่อทำ scroll ด้านใน */
-    .wrap {
-      flex: 1;
-      max-width: 1100px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 16px 16px 24px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* ===== Top Bar (ตรึงไว้ + เส้นแดง) ===== */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 14px;
-
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg);
-      padding: 10px 0;
-      border-bottom:2px #f3fbff;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .title {
-      margin: 0;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: .2px;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 300;
-      font-size: 13px;
-    }
-
-    .searchbar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .searchbar .barcode {
-      width: 320px;
-      max-width: 100%;
-    }
-
-    /* ✅ พื้นที่ Scroll อยู่ตรงนี้ */
-    .page-scroll {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 8px;
-    }
-
-    .btn {
-      border: 1px solid transparent;
-      height: 42px;
-      padding: 0 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 500;
-      transition: .15s ease;
-      white-space: nowrap;
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, var(--blue-600), var(--blue-500));
-      color: #fff;
-      box-shadow: 0 10px 22px rgba(34, 158, 196, .20);
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 26px rgba(34, 158, 196, .25);
-    }
-
-    .btn.ghost {
-      background: #fff;
-      border-color: var(--line);
-      color: var(--text);
-    }
-
-    .btn.ghost:hover {
-      background: var(--blue-50);
-    }
-
-    /* ===== Card ===== */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card-head {
-      padding: 16px 18px;
-      background: linear-gradient(90deg, rgba(59, 179, 214, .14), rgba(59, 179, 214, .06));
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .card-head h2 {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .card-body {
-      padding: 16px 18px 20px;
-    }
-
-    /* ===== Inputs ===== */
-    label {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    input,
-    select {
-      width: 100%;
-      height: 42px;
-      padding: 0 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      transition: .15s ease;
-      box-shadow: 0 0 0 rgba(59, 179, 214, 0);
-    }
-
-    input:focus,
-    select:focus {
-      border-color: rgba(59, 179, 214, .65);
-      box-shadow: 0 0 0 4px rgba(59, 179, 214, .15);
-    }
-
-    /* ===== General info grid ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      grid-column: span 6;
-    }
-
-    .field.full {
-      grid-column: span 8;
-    }
-
-    .field.row2 {
-      grid-column: span 4;
-    }
-
-    .field.row3 {
-      grid-column: span 4;
-    }
-
-    .hint {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    /* ===== Vitals row (BP / Pulse) ===== */
-    .vitals {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding-top: 2px;
-    }
-
-    .vitals .bp {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .vitals .bp input {
-      width: 120px;
-      text-align: center;
-    }
-
-    .slash {
-      color: var(--muted);
-      font-weight: 500;
-      padding: 0 2px;
-    }
-
-    .vitals .pulse {
-      width: 180px;
-      max-width: 100%;
-    }
-
-    /* ===== Questionnaire table ===== */
-    .section-title {
-      margin: 16px -18px 0;
-      padding: 12px 18px;
-      border-top: 1px solid var(--line);
-      background: linear-gradient(90deg, rgba(59, 179, 214, .14), rgba(59, 179, 214, .06));
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .table-wrap {
-      margin-top: 12px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    thead th {
-      background: linear-gradient(90deg, var(--blue-600), var(--blue-500));
-      color: #fff;
-      padding: 12px 10px;
-      font-weight: 500;
-      font-size: 14px;
-      text-align: center;
-      border-right: 2px solid rgba(255, 255, 255, .25);
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
-
-    thead th:first-child {
-      text-align: left;
-      padding-left: 14px;
-    }
-
-    thead th:last-child {
-      border-right: none;
-    }
-
-    tbody td {
-      padding: 10px 10px;
-      border-top: 1px solid var(--line);
-      background: #fbfeff;
-      font-size: 14px;
-      vertical-align: middle;
-    }
-
-    tbody tr:nth-child(even) td {
-      background: #f2fbff;
-    }
-
-    tbody td:first-child {
-      width: 56%;
-      padding-left: 14px;
-      color: #2f4b58;
-    }
-
-    tbody td.chk,
-    thead th.chk {
-      width: 8%;
-      text-align: center;
-    }
-
-    input[type="radio"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--blue-600);
-      cursor: pointer;
-    }
-
-    .details-input {
-      height: 34px;
-      border-radius: 10px;
-      background: #fff;
-    }
-
-    tbody td.details {
-      width: 28%;
-    }
-
-    /* ===== Bottom actions ===== */
-    .actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* Tablet แนวนอน 8-10 นิ้ว */
-    @media (min-width: 900px) and (max-width: 1280px) {
-      body {
-        font-size: 16px;
-      }
-
-      .container {
-        max-width: 100%;
-        padding: 20px 30px;
-      }
-
-      .nav-link {
-        font-size: 16px;
-        padding: 10px 14px;
-      }
-
-      table {
-        font-size: 14px;
-      }
-
-      th,
-      td {
-        padding: 6px;
-      }
-
-      input,
-      textarea,
-      select {
-        font-size: 16px;
-        padding: 6px;
-      }
-
-      button {
-        font-size: 16px;
-        padding: 10px 18px;
-      }
-
-      table {
-        table-layout: fixed;
-        width: 100%;
-      }
-    }
-
-    .app-layout {
-      display: flex;
-    }
-
-    .sidebar {
-      width: 220px;
-    }
-
-    @media (min-width: 900px) {
-      .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-    }
-
-    /* ✅ มือถือให้ลงบรรทัดละ 1 ช่อง */
-    @media (max-width: 576px) {
-      .topbar {
-        align-items: flex-start;
-      }
-
-      .searchbar {
-        justify-content: flex-start;
-      }
-
-      .field,
-      .field.full,
-      .field.row3 {
-        grid-column: span 12;
-      }
-
-      thead th {
-        font-size: 13px;
-      }
-
-      .vitals .bp input {
-        width: 100px;
-      }
-    }
-  </style>
 </head>
+
+<style>
+  /* ===============================
+     ✅ 1) กันทั้งหน้าเลื่อน (ตามที่คุณต้องการ)
+     ✅ 2) ให้เลื่อนเฉพาะ .table-wrapper
+  =============================== */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    /* 🔥 ไม่ให้หน้าเลื่อน */
+    font-family: "Kanit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  /* คุม layout ให้อยู่เต็มจอ และไม่ให้ content เลื่อนทั้งหน้า */
+  .container-fluid.position-relative.bg-white.d-flex.p-0 {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    height: 100vh;
+    overflow: auto;
+    /* sidebar เลื่อนได้ถ้ายาว */
+  }
+
+  .content {
+    height: 100vh;
+    overflow: hidden;
+    /* ✅ สำคัญ: ไม่ให้ content เลื่อนทั้งหน้า */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* header + nav svg */
+  .nav-link svg {
+    margin-right: 8px;
+    display: inline-block;
+  }
+
+  /* ===============================
+     ✅ Table wrapper (เลื่อนเฉพาะตาราง)
+  =============================== */
+  .table-wrapper {
+    max-height: calc(100vh - 360px);
+    /* 🔥 ปรับเลขนี้ได้ ถ้าส่วนบนสูง/ต่ำ */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  /* ให้ตารางไม่ดัน margin-bottom */
+  .table-wrapper table {
+    margin-bottom: 0;
+  }
+
+  /* sticky header ทำงานในกล่องเลื่อน */
+  .table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: lightblue;
+  }
+
+  /* ===============================
+     Specimen checkbox bar
+  =============================== */
+  .specimen-bar {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border: 1px solid #dfe6ee;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    align-items: center;
+  }
+
+  .specimen-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    background: #fff;
+    user-select: none;
+  }
+
+  .specimen-pill input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .specimen-name {
+    font-family: kanit;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* สีตัวอักษรตามชนิดหลอด */
+  .t-edta .specimen-name { color: #7b5cff; }
+  .t-clot .specimen-name { color: #e53935; }
+  .t-naf .specimen-name { color: #6b6b6b; }
+  .t-citrate .specimen-name { color: #1e88e5; }
+  .t-hep .specimen-name { color: #2e7d32; }
+
+  /* ติ๊กแล้วให้พื้นหลังอ่อน ๆ */
+  .t-edta input:checked + .specimen-name { background: rgba(123, 92, 255, .10); padding: 2px 8px; border-radius: 999px; }
+  .t-clot input:checked + .specimen-name { background: rgba(229, 57, 53, .10); padding: 2px 8px; border-radius: 999px; }
+  .t-naf input:checked + .specimen-name { background: rgba(107, 107, 107, .12); padding: 2px 8px; border-radius: 999px; }
+  .t-citrate input:checked + .specimen-name { background: rgba(30, 136, 229, .10); padding: 2px 8px; border-radius: 999px; }
+  .t-hep input:checked + .specimen-name { background: rgba(46, 125, 50, .10); padding: 2px 8px; border-radius: 999px; }
+
+  /* Tablet แนวนอน 8-10 นิ้ว */
+  @media (min-width: 900px) and (max-width: 1280px) {
+    table { font-size: 14px; }
+    th, td { padding: 6px; }
+    input, textarea, select { font-size: 16px; padding: 6px; }
+    button { font-size: 16px; padding: 10px 18px; }
+
+    .table-wrapper { max-height: calc(100vh - 330px); }
+  }
+
+  @media (max-width: 576px) {
+    .content { padding: 12px; }
+    .table-wrapper { max-height: calc(100vh - 320px); }
+  }
+</style>
 
 <body>
   <div class="container-fluid position-relative bg-white d-flex p-0">
+
+    <!-- Spinner Start -->
     <div id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
       <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
+    <!-- Spinner End -->
 
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
@@ -538,16 +192,14 @@
               class="bi bi-hospital-fill" viewBox="0 0 16 16">
               <path
                 d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25" />
-            </svg>
-            Check Up
+            </svg>Check Up
           </h3>
         </a>
 
         <div class="d-flex align-items-center ms-4 mb-4">
           <div class="position-relative">
-            <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;" />
-            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-            </div>
+            <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
           </div>
           <div class="ms-3">
             <h6 class="mb-0">Name</h6>
@@ -556,13 +208,12 @@
         </div>
 
         <div class="navbar-nav w-100">
-          <a href="index.html" class="nav-item nav-link mt-5">
+          <a href="index.html" class="nav-item nav-link active mt-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill"
               viewBox="0 0 16 16">
               <path
-                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.540-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
-            </svg>
-            X Ray
+                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
+            </svg>X Ray
           </a>
 
           <a href="index.html" class="nav-item nav-link mt-3">
@@ -570,64 +221,51 @@
               viewBox="0 0 16 16">
               <path fill-rule="evenodd"
                 d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
-            </svg>
-            EKG
+            </svg>EKG
           </a>
 
-          <a href="chart.html" class="nav-item nav-link active mt-3">
+          <a href="chart.html" class="nav-item nav-link mt-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
               <path
                 d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5" />
               <path
                 d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5M9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z" />
-            </svg>
-            ซักประวัติ
+            </svg>ซักประวัติ
           </a>
 
-          <a href="form.html" class="nav-item nav-link mt-3">
-            <svg fill="#000000" height="20px" width="15px" version="1.1" id="Capa_1"
-              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297 297"
-              xml:space="preserve">
-              <path
-                d="M294.081,72.683L224.316,2.918c-3.891-3.889-10.2-3.891-14.095,0l-23.256,23.255c-1.869,1.869-2.919,4.404-2.919,7.047
-s1.05,5.178,2.919,7.047l4.581,4.581L12.552,223.843C4.458,231.936,0,242.698,0,254.144c0,11.447,4.458,22.208,12.552,30.303
-c8.094,8.094,18.857,12.552,30.303,12.552s22.208-4.458,30.302-12.552l178.995-178.995l4.581,4.581
-c1.87,1.869,4.404,2.919,7.047,2.919c2.643,0,5.179-1.05,7.047-2.919l23.255-23.256C297.973,82.886,297.973,76.575,294.081,72.683z
-M59.062,270.353c-4.329,4.33-10.085,6.714-16.207,6.714s-11.879-2.384-16.208-6.714c-4.33-4.329-6.714-10.086-6.714-16.208
-c0-6.123,2.384-11.878,6.714-16.207l120.856-120.856l32.416,32.416L59.062,270.353z M194.013,135.402l-32.416-32.416l44.044-44.044
-l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671,55.671L263.779,88.892z" />
-            </svg>
-            เจาะเลือด
-          </a>
+           <a href="chart.html" class="nav-item nav-link active mt-3"><svg fill="#000000" height="20px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 297 297" xml:space="preserve">
+<path d="M294.081,72.683L224.316,2.918c-3.891-3.889-10.2-3.891-14.095,0l-23.256,23.255c-1.869,1.869-2.919,4.404-2.919,7.047
+	s1.05,5.178,2.919,7.047l4.581,4.581L12.552,223.843C4.458,231.936,0,242.698,0,254.144c0,11.447,4.458,22.208,12.552,30.303
+	c8.094,8.094,18.857,12.552,30.303,12.552s22.208-4.458,30.302-12.552l178.995-178.995l4.581,4.581
+	c1.87,1.869,4.404,2.919,7.047,2.919c2.643,0,5.179-1.05,7.047-2.919l23.255-23.256C297.973,82.886,297.973,76.575,294.081,72.683z
+	 M59.062,270.353c-4.329,4.33-10.085,6.714-16.207,6.714s-11.879-2.384-16.208-6.714c-4.33-4.329-6.714-10.086-6.714-16.208
+	c0-6.123,2.384-11.878,6.714-16.207l120.856-120.856l32.416,32.416L59.062,270.353z M194.013,135.402l-32.416-32.416l44.044-44.044
+	l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671,55.671L263.779,88.892z"/>
+</svg> เจาะเลือด</a>
         </div>
       </nav>
     </div>
     <!-- Sidebar End -->
 
+    <!-- Content Start -->
     <div class="content">
       <!-- Navbar Start -->
       <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
         <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
           <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
         </a>
-
         <a href="#" class="sidebar-toggler flex-shrink-0">
           <i class="fa fa-bars"></i>
         </a>
-
-        <!-- ✅ เอา element ในกรอบแดงออก: (Search + icon/message/notification/profile ทั้งหมด) -->
-
-        <!-- ✅ ใส่ Log Out มุมขวาสุด -->
-        <div class="ms-auto d-flex align-items-center">
-          <a href="#" class="logout-link">
-            <i class="fa fa-sign-out-alt"></i>
-            Log Out
-          </a>
-        </div>
+        <form class="d-none d-md-flex ms-4">
+          <input class="form-control border-0" type="search" placeholder="Search">
+        </form>
       </nav>
 
-     <div class="container-fluid mt-4" style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
+      <!-- ✅ ส่วนนี้ไม่เลื่อนทั้งหน้า แต่ตารางจะเลื่อนใน table-wrapper -->
+      <div class="container-fluid mt-4" style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
         <!-- row search -->
         <div class="row align-items-start w-100">
           <div class="col-10">
@@ -1015,6 +653,3 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
 </body>
 
 </html>
-
-
-
