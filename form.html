@@ -35,20 +35,14 @@
 </head>
 
 <style>
-  /* ===============================
-     ✅ 1) กันทั้งหน้าเลื่อน (ตามที่คุณต้องการ)
-     ✅ 2) ให้เลื่อนเฉพาะ .table-wrapper
-  =============================== */
   html,
   body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    /* 🔥 ไม่ให้หน้าเลื่อน */
     font-family: "Kanit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
 
-  /* คุม layout ให้อยู่เต็มจอ และไม่ให้ content เลื่อนทั้งหน้า */
   .container-fluid.position-relative.bg-white.d-flex.p-0 {
     height: 100vh;
     overflow: hidden;
@@ -57,30 +51,24 @@
   .sidebar {
     height: 100vh;
     overflow: auto;
-    /* sidebar เลื่อนได้ถ้ายาว */
   }
 
   .content {
     height: 100vh;
     overflow: hidden;
-    /* ✅ สำคัญ: ไม่ให้ content เลื่อนทั้งหน้า */
     padding: 20px;
     display: flex;
     flex-direction: column;
   }
 
-  /* header + nav svg */
   .nav-link svg {
     margin-right: 8px;
     display: inline-block;
   }
 
-  /* ===============================
-     ✅ Table wrapper (เลื่อนเฉพาะตาราง)
-  =============================== */
+  /* ✅ Table wrapper */
   .table-wrapper {
     max-height: calc(100vh - 360px);
-    /* 🔥 ปรับเลขนี้ได้ ถ้าส่วนบนสูง/ต่ำ */
     overflow-y: auto;
     overflow-x: auto;
     border: 1px solid #ddd;
@@ -88,12 +76,10 @@
     background: #fff;
   }
 
-  /* ให้ตารางไม่ดัน margin-bottom */
   .table-wrapper table {
     margin-bottom: 0;
   }
 
-  /* sticky header ทำงานในกล่องเลื่อน */
   .table-wrapper thead th {
     position: sticky;
     top: 0;
@@ -141,38 +127,170 @@
     font-weight: 700;
   }
 
-  /* สีตัวอักษรตามชนิดหลอด */
-  .t-edta .specimen-name { color: #7b5cff; }
-  .t-clot .specimen-name { color: #e53935; }
-  .t-naf .specimen-name { color: #6b6b6b; }
-  .t-citrate .specimen-name { color: #1e88e5; }
-  .t-hep .specimen-name { color: #2e7d32; }
+  .t-edta .specimen-name {
+    color: #7b5cff;
+  }
 
-  /* ติ๊กแล้วให้พื้นหลังอ่อน ๆ */
-  .t-edta input:checked + .specimen-name { background: rgba(123, 92, 255, .10); padding: 2px 8px; border-radius: 999px; }
-  .t-clot input:checked + .specimen-name { background: rgba(229, 57, 53, .10); padding: 2px 8px; border-radius: 999px; }
-  .t-naf input:checked + .specimen-name { background: rgba(107, 107, 107, .12); padding: 2px 8px; border-radius: 999px; }
-  .t-citrate input:checked + .specimen-name { background: rgba(30, 136, 229, .10); padding: 2px 8px; border-radius: 999px; }
-  .t-hep input:checked + .specimen-name { background: rgba(46, 125, 50, .10); padding: 2px 8px; border-radius: 999px; }
+  .t-clot .specimen-name {
+    color: #e53935;
+  }
 
-  /* Tablet แนวนอน 8-10 นิ้ว */
+  .t-naf .specimen-name {
+    color: #6b6b6b;
+  }
+
+  .t-citrate .specimen-name {
+    color: #1e88e5;
+  }
+
+  .t-hep .specimen-name {
+    color: #2e7d32;
+  }
+
+  .t-edta input:checked+.specimen-name {
+    background: rgba(123, 92, 255, .10);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .t-clot input:checked+.specimen-name {
+    background: rgba(229, 57, 53, .10);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .t-naf input:checked+.specimen-name {
+    background: rgba(107, 107, 107, .12);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .t-citrate input:checked+.specimen-name {
+    background: rgba(30, 136, 229, .10);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .t-hep input:checked+.specimen-name {
+    background: rgba(46, 125, 50, .10);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  /* ✅ Log Out link */
+  .logout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #0f2b38;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    transition: .15s ease;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .logout-link:hover {
+    background: #f3fbff;
+    transform: translateY(-1px);
+  }
+
+  /* ✅ ส่วนแสดงจำนวนบนหัวตาราง */
+  .table-head-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .spec-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .spec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    background: #fff;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* ✅ ปรับตัวเลข: ใหญ่ขึ้นนิด + พื้นหลังอ่อน + ตัวเลขเข้ม */
+  .spec-pill .badge {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eaf7ff !important;
+    color: #0f2b38 !important;
+    border: 1px solid rgba(15, 43, 56, .15);
+    font-weight: 800;
+    line-height: 1;
+  }
+
   @media (min-width: 900px) and (max-width: 1280px) {
-    table { font-size: 14px; }
-    th, td { padding: 6px; }
-    input, textarea, select { font-size: 16px; padding: 6px; }
-    button { font-size: 16px; padding: 10px 18px; }
+    table {
+      font-size: 14px;
+    }
 
-    .table-wrapper { max-height: calc(100vh - 330px); }
+    th,
+    td {
+      padding: 6px;
+    }
+
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+      padding: 6px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 18px;
+    }
+
+    .table-wrapper {
+      max-height: calc(100vh - 330px);
+    }
   }
 
   @media (max-width: 576px) {
-    .content { padding: 12px; }
-    .table-wrapper { max-height: calc(100vh - 320px); }
+    .content {
+      padding: 12px;
+    }
+
+    .table-wrapper {
+      max-height: calc(100vh - 320px);
+    }
   }
+
+  /* ✅ ให้แสดงอยู่แถวเดียวกัน */
+.spec-counts{
+  flex-wrap: nowrap !important;   /* ไม่ให้ขึ้นบรรทัดใหม่ */
+  white-space: nowrap;            /* ไม่ตัดบรรทัด */
+  overflow-x: auto;               /* ถ้ายาวเกินให้เลื่อนแนวนอน */
+  overflow-y: hidden;
+  gap: 8px;
+}
+
+/* (ถ้าอยากซ่อน scrollbar แนวนอนแบบเนียน ๆ) */
+.spec-counts::-webkit-scrollbar{ height: 6px; }
+.spec-counts::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.15); border-radius: 99px; }
 </style>
 
 <body>
-   <div class="container-fluid position-relative bg-white d-flex p-0">
+  <div class="container-fluid position-relative bg-white d-flex p-0">
     <div id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
       <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -188,7 +306,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-hospital-fill" viewBox="0 0 16 16">
               <path
-                d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25" />
+                d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1z" />
             </svg>
             Check Up
           </h3>
@@ -207,50 +325,11 @@
         </div>
 
         <div class="navbar-nav w-100">
-          <a href="index.html" class="nav-item nav-link mt-5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lungs-fill"
-              viewBox="0 0 16 16">
-              <path
-                d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.540-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z" />
-            </svg>
-            เอ็กซเรย์
-          </a>
-
-          <a href="button.html" class="nav-item nav-link mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
-            </svg>
-            คลื่นไฟฟ้าหัวใจ
-          </a>
-
-          <a href="chart.html" class="nav-item nav-link mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
-              <path
-                d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5" />
-              <path
-                d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5M9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z" />
-            </svg>
-            ซักประวัติ
-          </a>
-
-          <a href="form.html" class="nav-item nav-link active mt-3">
-            <svg fill="#000000" height="20px" width="15px" version="1.1" id="Capa_1"
-              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297 297"
-              xml:space="preserve">
-              <path
-                d="M294.081,72.683L224.316,2.918c-3.891-3.889-10.2-3.891-14.095,0l-23.256,23.255c-1.869,1.869-2.919,4.404-2.919,7.047
-s1.05,5.178,2.919,7.047l4.581,4.581L12.552,223.843C4.458,231.936,0,242.698,0,254.144c0,11.447,4.458,22.208,12.552,30.303
-c8.094,8.094,18.857,12.552,30.303,12.552s22.208-4.458,30.302-12.552l178.995-178.995l4.581,4.581
-c1.87,1.869,4.404,2.919,7.047,2.919c2.643,0,5.179-1.05,7.047-2.919l23.255-23.256C297.973,82.886,297.973,76.575,294.081,72.683z
-M59.062,270.353c-4.329,4.33-10.085,6.714-16.207,6.714s-11.879-2.384-16.208-6.714c-4.33-4.329-6.714-10.086-6.714-16.208
-c0-6.123,2.384-11.878,6.714-16.207l120.856-120.856l32.416,32.416L59.062,270.353z M194.013,135.402l-32.416-32.416l44.044-44.044
-l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671,55.671L263.779,88.892z" />
-            </svg>
-            เจาะเลือด
-          </a>
+          <a href="index.html" class="nav-item nav-link mt-5">X Ray</a>
+          <a href="table.html" class="nav-item nav-link mt-3">EKG</a>
+          <a href="chart.html" class="nav-item nav-link mt-3">ซักประวัติ</a>
+          <a href="form.html" class="nav-item nav-link active mt-3">เจาะเลือด</a>
+          <a href="button.html" class="nav-item nav-link mt-3">ส่งปัสสาวะ</a>
         </div>
       </nav>
     </div>
@@ -267,9 +346,6 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
           <i class="fa fa-bars"></i>
         </a>
 
-        <!-- ✅ เอา element ในกรอบแดงออก: (Search + icon/message/notification/profile ทั้งหมด) -->
-
-        <!-- ✅ ใส่ Log Out มุมขวาสุด -->
         <div class="ms-auto d-flex align-items-center">
           <a href="#" class="logout-link">
             <i class="fa fa-sign-out-alt"></i>
@@ -278,7 +354,6 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
         </div>
       </nav>
 
-      <!-- ✅ ส่วนนี้ไม่เลื่อนทั้งหน้า แต่ตารางจะเลื่อนใน table-wrapper -->
       <div class="container-fluid mt-4" style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
         <!-- row search -->
         <div class="row align-items-start w-100">
@@ -330,10 +405,15 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
 
         <!-- table area -->
         <div class="container-fluid pt-2 px-4" style="flex:1; overflow:hidden;">
-          <div class="bg-light rounded h-100 p-4" style="height:100%; overflow:hidden; display:flex; flex-direction:column;">
-            <h6 class="mb-3">Bordered Table</h6>
+          <div class="bg-light rounded h-100 p-4"
+            style="height:100%; overflow:hidden; display:flex; flex-direction:column;">
 
-            <!-- ✅ สำคัญ: ครอบตารางด้วย table-wrapper -->
+            <!-- ✅ หัวตาราง + จำนวนด้านขวา -->
+            <div class="table-head-row mb-3">
+            
+              <div id="specCounts" class="spec-counts"></div>
+            </div>
+
             <div class="table-wrapper">
               <table id="specimenlist" class="table table-bordered" style="font-family: kanit;">
                 <colgroup>
@@ -351,12 +431,7 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row" class="text-center">1</th>
-                    <td class="text-center"></td>
-                    <td></td>
-                    <td class="text-center"></td>
-                  </tr>
+                  <!-- JS เติม -->
                 </tbody>
               </table>
             </div>
@@ -368,12 +443,12 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
     <!-- Content End -->
   </div>
 
-  <!-- ✅ Modal (แก้แท็กให้ครบ) -->
+  <!-- Modal -->
   <div class="modal" id="showmodal" style="display:none;">
     <div class="modal-dialog">
       <div class="modal-content" style="background-color: lightsteelblue;">
         <div class="modal-header">
-          <h5 class="modal-title">Chest X-Ray</h5>
+          <h5 class="modal-title">Add Specimen</h5>
           <button type="button" class="btn-close" aria-label="Close" onclick="closemodal()"></button>
         </div>
 
@@ -400,6 +475,9 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
     let fileHandle = null;
     let workbook = null;
     let cachedData = [];
+
+    // ✅ หัวข้อไว้ล่วงหน้า + ซ่อน 0
+    const SPECIMEN_HEADERS = ["EDTA", "Naf", "Clot", "Hepaline", "Sodium Citrate"];
 
     function normalizeId(v) {
       return String(v ?? "").trim().replace(/\s+/g, "").replace(/-/g, "").toUpperCase();
@@ -579,8 +657,8 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
           const row = aoa[nextRow] ? [...aoa[nextRow]] : [];
           row[0] = id;          // A
           row[1] = name;        // B
-          row[2] = "เจาะเลือด"; // C
-          row[3] = sp;          // D = specimen
+          row[2] = "เจาะเลือด"; // ✅ C
+          row[3] = sp;          // ✅ D specimen
           aoa[nextRow] = row;
           nextRow++;
         }
@@ -611,7 +689,42 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
       }
     }
 
-    // ====== SHOW SPECIMEN ======
+    // ✅ นับจาก "ตารางที่แสดง" (คอลัมน์ 4) + มีหัวข้อไว้ล่วงหน้า + ซ่อน 0
+   <!-- ✅ แก้เฉพาะฟังก์ชันนี้: renderCountsFromTable() -->
+
+function renderCountsFromTable() {
+  const box = document.getElementById("specCounts");
+  if (!box) return;
+
+  const rows = document.querySelectorAll("#specimenlist tbody tr");
+  const counts = {};
+
+  // นับจากตารางที่แสดง (คอลัมน์ที่ 4 = specimen)
+  rows.forEach(tr => {
+    const tds = tr.querySelectorAll("td");
+    const sp = (tds[2]?.textContent || "").trim(); // td[0]=ID, td[1]=ชื่อ, td[2]=specimen
+    if (!sp) return;
+    counts[sp] = (counts[sp] || 0) + 1;
+  });
+
+  // ✅ แสดงทุกหัวข้อ แม้เป็น 0
+  const html = SPECIMEN_HEADERS
+    .map(name => {
+      const n = counts[name] || 0;
+      return `
+        <span class="spec-pill">
+          ${escapeHtml(name)}
+          <span class="badge">${n}</span>
+        </span>
+      `;
+    })
+    .join("");
+
+  box.innerHTML = html;
+}
+
+
+    // ✅ SHOW SPECIMEN: แสดงเฉพาะแถวที่คอลัมน์ C = "เจาะเลือด"
     function showSpecimen() {
       if (!workbook) return;
 
@@ -627,20 +740,21 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
       tbody.innerHTML = "";
       let no = 1;
 
-      const allowed = new Set(["edta", "naf", "clot", "hepaline", "sodium citrate"]);
+      const targetC = "เจาะเลือด";
 
       for (let i = 1; i < aoa.length; i++) {
         const r = aoa[i] || [];
-        const colA = String(r[0] ?? "").trim();
-        const colB = String(r[1] ?? "").trim();
-        const colD = String(r[3] ?? "").trim();
+        const colA = String(r[0] ?? "").trim(); // A ID
+        const colB = String(r[1] ?? "").trim(); // B Name
+        const colC = String(r[2] ?? "").trim(); // ✅ C
+        const colD = String(r[3] ?? "").trim(); // ✅ D specimen
 
-        if (!colA && !colB && !colD) continue;
-        if (!allowed.has(colD.toLowerCase())) continue;
+        if (!colA && !colB && !colC && !colD) continue;
+        if (colC !== targetC) continue; // ✅ เงื่อนไขสำคัญ
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <th class="text-center">${no}</th>
+          <th scope="row" class="text-center">${no}</th>
           <td class="text-center">${escapeHtml(colA)}</td>
           <td>${escapeHtml(colB)}</td>
           <td class="text-center">${escapeHtml(colD)}</td>
@@ -648,6 +762,9 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
         tbody.appendChild(tr);
         no++;
       }
+
+      // ✅ อัปเดตจำนวนหลังแสดงตาราง
+      renderCountsFromTable();
     }
   </script>
 
@@ -667,5 +784,3 @@ l32.416,32.416L194.013,135.402z M263.779,88.892L208.108,33.22l9.161-9.161l55.671
 </body>
 
 </html>
-
-
